@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Bridging the MoCap-to-Visual Domain Gap in Human Mesh Recovery from 2D Keypoints">
+  <meta name="keywords" content="Key2Mesh, human pose and shape estimation, 2D human pose, body mesh estimation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key2Mesh</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MoCap-to-Visual Domain Adaptation for Efficient Human Mesh
+              Estimation from 2D Keypoints</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Bedirhan Uguz,</span>
+              <span class="author-block">
+                Ozhan Suat,
+              </span>
+              <span class="author-block">
+                Batuhan Karagoz,</span>
+              <span class="author-block">
+                <a href="https://user.ceng.metu.edu.tr/~emre/">Emre Akbas</a></span>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Middle East Technical University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code <i><small>(soon)</small></i></span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-four-fifths">
+    <div class="container is-max-desktop">
+      <div class="column is-centered">
+        <img src="./static/images/teaser-fig.png" class="figure">
+      </div>
+      <div class="column has-text-centered">
+        <strong>An overview of Key2Mesh's inference and training process.</strong>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            This paper presents Key2Mesh, a model that takes a set of 2D human pose keypoints as input and estimates the
+            corresponding body mesh. Since this process does not involve any visual (i.e. RGB image) data, the model can
+            be trained on large-scale motion capture (MoCap) datasets, thereby overcoming the scarcity of image datasets
+            with 3D labels.
+            To enable the model's application on RGB images, we first run an off-the-shelf 2D pose estimator to obtain
+            the 2D keypoints, and then feed these 2D keypoints to Key2Mesh.
+            To improve the performance of our model on RGB images, we apply an adversarial domain adaptation (DA) method
+            to bridge the gap between the MoCap and visual domains.
+            Crucially, our DA method does not require 3D labels for visual data, which enables adaptation to target sets
+            without the need for costly labels. We evaluate Key2Mesh for the task of estimating 3D human meshes from 2D
+            keypoints, in the absence of RGB and mesh label pairs. Our results on widely used H3.6M and 3DPW datasets
+            show that Key2Mesh sets the new state-of-the-art by outperforming other models in PA-MPJPE for both
+            datasets, and in MPJPE and PVE for the 3DPW dataset.
+            Thanks to our model's simple architecture, it operates at least 12x faster than the prior state-of-the-art
+            model, LGD.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-four-fifths">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-1">
+                <video poster="" id="1" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-2">
+                <video poster="" id="2" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/2.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-5">
+                <video poster="" id="5" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="item1 item-3">
+                <div class="item2 item-3">
+                  <div class="item item-3">
+                    <video poster="" id="3" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="item2 item-6">
+                  <div class="item item-6">
+                    <video poster="" id="6" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/6.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="item3 item-4">
+                  <div class="item item-4">
+                    <video poster="" id="4" autoplay controls muted loop playsinline height="100%">
+                      <source src="./static/videos/4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <i>
+              <small>
+                <a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose">OpenPose</a>
+                is utilized to generate input keypoints, and the results are presented on a per-frame basis without any
+                temporal smoothing applied.
+              </small>
+            </i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-four-fifths">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="columns is-centered">
+          <div class="column">
+            <img src="./static/images/h36m-da.png" />
+            <div class="container is-max-desktop">
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                  <div class="content is-italic" style="margin: 1% 5% 8% 5%;">
+                    Qualitative comparison of our pre-trained and domain-adapted model on H3.6M dataset. The first
+                    column shows the input image and keypoint detections.
+                    The second and third columns display outputs from the pre-trained model, while the last two columns
+                    present results from the domain-adapted model, which outperforms our pre-trained model, especially
+                    on complex poses.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-four-fifths">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-half-desktop">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <div class="columns is-centered" style="margin-top: 3%;">
+          <div class="column">
+            <img src="./static/images/h36m-table.png" />
+          </div>
+          <div class="column">
+            <img src="./static/images/3dpw-table.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>-</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="column has-text-centered">
+            <div class="content">
+              <p>
+                This webpage template is taken from <a href="https://nerfies.github.io/">Nerfies: Deformable Neural
+                  Radiance Fields</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
